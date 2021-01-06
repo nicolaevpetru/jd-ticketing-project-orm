@@ -50,7 +50,6 @@ public class UserServiceImpl implements UserService {
 
         // Find current user
         User user = userRepository.findByUserName(dto.getUserName());
-
         // Map update user dto to entity object
         User convertUser = userMapper.convertToEntity(dto);
         // Set id to the converted object
@@ -61,6 +60,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(String username) {
+
+
+    }
+
+    @Override
+    public void deleteByUserName(String username) {
+
+        userRepository.deleteByUserName(username);
 
     }
 }
