@@ -9,11 +9,10 @@ import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "roles")
 public class Role extends BaseEntity {

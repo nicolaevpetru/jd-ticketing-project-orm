@@ -1,8 +1,7 @@
 package com.ticketing.converter;
 
-
-import com.ticketing.dto.UserDTO;
-import com.ticketing.service.UserService;
+import com.ticketing.dto.ProjectDTO;
+import com.ticketing.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 import org.springframework.core.convert.converter.Converter;
@@ -10,15 +9,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationPropertiesBinding
-public class UserDTOConverter implements Converter<String, UserDTO> {
+public class ProjectDtoConverter implements Converter<String, ProjectDTO> {
 
     @Autowired
-    UserService userService;
+    ProjectService projectService;
 
     @Override
-    public UserDTO convert(String source) {
-        return userService.findByUserName(source);
+    public ProjectDTO convert(String source) {
+        return projectService.getByProjectCode(source)   ;
     }
-
-
 }

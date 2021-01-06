@@ -3,11 +3,10 @@ package com.ticketing.dto;
 import com.ticketing.enums.Gender;
 import lombok.*;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class UserDTO {
     private String firstName;
     private String lastName;

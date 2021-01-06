@@ -1,11 +1,9 @@
 package com.ticketing.service;
 
 import com.ticketing.dto.UserDTO;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface UserService {
 
     List<UserDTO> listAllUsers();
@@ -19,4 +17,6 @@ public interface UserService {
     void delete(String username);
 
     void deleteByUserName(String username);
+
+    List<UserDTO> listAllByRole(String role);
 }

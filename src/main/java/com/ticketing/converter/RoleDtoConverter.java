@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationPropertiesBinding
-public class RoleDTOConverter implements Converter<String, RoleDTO> {
+public class RoleDtoConverter implements Converter<String,RoleDTO> {
 
     @Autowired
     RoleService roleService;
@@ -18,6 +18,6 @@ public class RoleDTOConverter implements Converter<String, RoleDTO> {
     @Override
     public RoleDTO convert(String source) {
         Long id = Long.parseLong(source);
-        return roleService.findById(id);
+        return roleService.findById(id) ;
     }
 }

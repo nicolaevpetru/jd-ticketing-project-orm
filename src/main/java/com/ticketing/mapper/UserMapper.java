@@ -1,8 +1,6 @@
 package com.ticketing.mapper;
 
-import com.ticketing.dto.RoleDTO;
 import com.ticketing.dto.UserDTO;
-import com.ticketing.entity.Role;
 import com.ticketing.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
