@@ -76,39 +76,21 @@ public class ProjectController {
     public String updateProject(@PathVariable("projectcode") String projectcode, ProjectDTO project) {
 
         projectService.update(project);
-
         return "redirect:/project/create";
     }
 
 
     @GetMapping("/manager/complete")
     public String getProjectByManager(Model model) {
+
         List<ProjectDTO> projects = projectService.listAllProjectDetails();
-
-        model.addAttribute("projects",projects);
-
-
+        model.addAttribute("projects", projects);
         return "/manager/project-status";
+
     }
-//
-//    List<ProjectDTO> getCountedListOfProjectDTO(UserDTO manager){
-//
-//        List<ProjectDTO> list = projectService
-//                .findAll()
-//                .stream()
-//                .filter(x -> x.getAssignedManager().equals(manager))
-//                .map(x -> {
-//
-//                    List<TaskDTO> taskList = taskService.findTaskByManager(manager);
-//                    int completeCount = (int) taskList.stream().filter(t -> t.getProject().equals(x) && t.getTaskStatus() == Status.COMPLETE).count();
-//                    int inCompleteCount = (int) taskList.stream().filter(t -> t.getProject().equals(x) && t.getTaskStatus() != Status.COMPLETE).count();
-//
-//                    x.setCompleteTaskCounts(completeCount);
-//                    x.setUnfinishedTaskCounts(inCompleteCount);
-//
-//                    return x;
-//
-//                }).collect(Collectors.toList());
-//
-//        return list;
+
+    @GetMapping("/manager/complete/{projectCode}")
+    public String manager_completed(@PathVariable("'projectCode") String projectCode, Model model) {
+        return "redirect:/project/manager/complete";
+    }
 }
