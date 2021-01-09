@@ -1,6 +1,8 @@
 package com.ticketing.controller;
 
 import com.ticketing.dto.ProjectDTO;
+import com.ticketing.dto.UserDTO;
+import com.ticketing.entity.Project;
 import com.ticketing.enums.Status;
 import com.ticketing.service.ProjectService;
 import com.ticketing.service.UserService;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 
 @Controller
@@ -77,19 +81,16 @@ public class ProjectController {
     }
 
 
-//
-//    @GetMapping("/manager/complete")
-//    public String getProjectByManager(Model model){
-//
-//        UserDTO manager = userService.findById("john@cybertek.com");
-//
-//        List<ProjectDTO> projects = getCountedListOfProjectDTO(manager);
-//
-//        model.addAttribute("projects",projects);
-//
-//
-//        return "/manager/project-status";
-//    }
+    @GetMapping("/manager/complete")
+    public String getProjectByManager(Model model) {
+        List<ProjectDTO> projects = projectService.listAllProjects();
+
+
+        model.addAttribute("projects", projects);
+
+
+        return "/manager/project-status";
+    }
 //
 //    List<ProjectDTO> getCountedListOfProjectDTO(UserDTO manager){
 //

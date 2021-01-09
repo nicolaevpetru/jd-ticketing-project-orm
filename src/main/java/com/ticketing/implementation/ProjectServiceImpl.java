@@ -1,12 +1,15 @@
 package com.ticketing.implementation;
 
 import com.ticketing.dto.ProjectDTO;
+import com.ticketing.dto.UserDTO;
 import com.ticketing.entity.Project;
+import com.ticketing.entity.User;
 import com.ticketing.enums.Status;
 import com.ticketing.mapper.ProjectMapper;
 import com.ticketing.mapper.UserMapper;
 import com.ticketing.repository.ProjectRepository;
 import com.ticketing.service.ProjectService;
+import com.ticketing.service.UserService;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +22,13 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectMapper projectMapper;
     private ProjectRepository projectRepository;
     private UserMapper userMapper;
+    private UserService userService;
 
-    public ProjectServiceImpl(ProjectMapper projectMapper, ProjectRepository projectRepository, UserMapper userMapper) {
+    public ProjectServiceImpl(ProjectMapper projectMapper, ProjectRepository projectRepository, UserMapper userMapper, UserService userService) {
         this.projectMapper = projectMapper;
         this.projectRepository = projectRepository;
         this.userMapper = userMapper;
+        this.userService = userService;
     }
 
     @Override
@@ -68,5 +73,18 @@ public class ProjectServiceImpl implements ProjectService {
         Project project = projectRepository.findByProjectCode(projectCode);
         project.setProjectStatus(Status.COMPLETE);
         projectRepository.save(project);
+    }
+
+    @Override
+    public List<ProjectDTO> listAllProjectDetails() {
+
+        UserDTO currentUserDTO = userService.findByUserName("admin@admin.com");
+        User user = userMapper.convertToEntity(currentUserDTO);
+        List<Project> list = projectRepository.findAllByAssignedManager(user);
+
+        return list.stream().map(project -> {
+            ProjectDTO obj = projectMapper.convertToDto(project);
+            return obj;
+        }).collect(Collectors.toList());
     }
 }
