@@ -3,6 +3,7 @@ package com.ticketing.service;
 import com.ticketing.dto.ProjectDTO;
 import com.ticketing.dto.TaskDTO;
 import com.ticketing.entity.Task;
+import com.ticketing.enums.Status;
 
 import java.util.List;
 
@@ -25,4 +26,6 @@ public interface TaskService {
     void deleteByProject(ProjectDTO project);
 
     List<TaskDTO> listAllByProject(ProjectDTO project);
+
+    List<TaskDTO> listAllTasksByStatusIsNot(Status status);
 }

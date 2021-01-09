@@ -103,4 +103,9 @@ public class TaskServiceImpl implements TaskService {
             return taskMapper.convertToDto(obj);
         }).collect(Collectors.toList());
     }
+
+    @Override
+    public List<TaskDTO> listAllTasksByStatusIsNot(Status status) {
+        return null;
+    }
 }
