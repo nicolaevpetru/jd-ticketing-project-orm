@@ -9,6 +9,7 @@ import com.ticketing.mapper.ProjectMapper;
 import com.ticketing.mapper.UserMapper;
 import com.ticketing.repository.ProjectRepository;
 import com.ticketing.service.ProjectService;
+import com.ticketing.service.TaskService;
 import com.ticketing.service.UserService;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -23,12 +24,14 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectRepository projectRepository;
     private UserMapper userMapper;
     private UserService userService;
+    private TaskService taskService;
 
-    public ProjectServiceImpl(ProjectMapper projectMapper, ProjectRepository projectRepository, UserMapper userMapper, UserService userService) {
+    public ProjectServiceImpl(ProjectMapper projectMapper, ProjectRepository projectRepository, UserMapper userMapper, UserService userService, TaskService taskService) {
         this.projectMapper = projectMapper;
         this.projectRepository = projectRepository;
         this.userMapper = userMapper;
         this.userService = userService;
+        this.taskService = taskService;
     }
 
     @Override
@@ -84,6 +87,8 @@ public class ProjectServiceImpl implements ProjectService {
 
         return list.stream().map(project -> {
             ProjectDTO obj = projectMapper.convertToDto(project);
+            obj.setUnfinishedTaskCounts(taskService.totalNonCompletedTasks(project.getProjectCode()));
+            obj.setUnfinishedTaskCounts(taskService.totalCopletedTasks(project.getProjectCode()));
             return obj;
         }).collect(Collectors.toList());
     }
