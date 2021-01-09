@@ -83,10 +83,9 @@ public class ProjectController {
 
     @GetMapping("/manager/complete")
     public String getProjectByManager(Model model) {
-        List<ProjectDTO> projects = projectService.listAllProjects();
+        List<ProjectDTO> projects = projectService.listAllProjectDetails();
 
-
-        model.addAttribute("projects", projects);
+        model.addAttribute("projects",projects);
 
 
         return "/manager/project-status";
