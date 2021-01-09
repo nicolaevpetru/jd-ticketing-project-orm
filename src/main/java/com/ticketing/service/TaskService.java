@@ -1,5 +1,6 @@
 package com.ticketing.service;
 
+import com.ticketing.dto.ProjectDTO;
 import com.ticketing.dto.TaskDTO;
 import com.ticketing.entity.Task;
 
@@ -20,4 +21,8 @@ public interface TaskService {
     int totalNonCompletedTasks(String projectCode);
 
     int totalCompletedTasks(String projectCode);
+
+    void deleteByProject(ProjectDTO project);
+
+    List<TaskDTO> listAllByProject(ProjectDTO project);
 }
