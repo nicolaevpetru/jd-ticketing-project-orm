@@ -3,10 +3,12 @@ package com.ticketing.implementation;
 import com.ticketing.dto.ProjectDTO;
 import com.ticketing.dto.TaskDTO;
 import com.ticketing.entity.Task;
+import com.ticketing.entity.User;
 import com.ticketing.enums.Status;
 import com.ticketing.mapper.ProjectMapper;
 import com.ticketing.mapper.TaskMapper;
 import com.ticketing.repository.TaskRepository;
+import com.ticketing.repository.UserRepository;
 import com.ticketing.service.TaskService;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +23,13 @@ public class TaskServiceImpl implements TaskService {
     TaskRepository taskRepository;
     TaskMapper taskMapper;
     ProjectMapper projectMapper;
+    UserRepository userRepository;
 
-    public TaskServiceImpl(TaskRepository taskRepository, TaskMapper taskMapper, ProjectMapper projectMapper) {
+    public TaskServiceImpl(TaskRepository taskRepository, TaskMapper taskMapper, ProjectMapper projectMapper, UserRepository userRepository) {
         this.taskRepository = taskRepository;
         this.taskMapper = taskMapper;
         this.projectMapper = projectMapper;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -106,6 +110,8 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDTO> listAllTasksByStatusIsNot(Status status) {
-        return null;
+        User user = userRepository.findByUserName("tom@ct.com");
+        List<Task> list = taskRepository.findAllByTaskStatusIsNotAndAssignedEmployee(status, user);
+        return list.stream().map(taskMapper::convertToDto).collect(Collectors.toList());
     }
 }
