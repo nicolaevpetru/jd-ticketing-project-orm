@@ -2,12 +2,18 @@ package com.ticketing.mapper;
 
 import com.ticketing.dto.UserDTO;
 import com.ticketing.entity.User;
+import com.ticketing.repository.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
+
     private ModelMapper modelMapper;
+    
+    @Autowired
+    UserRepository userRepository;
 
     public UserMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;

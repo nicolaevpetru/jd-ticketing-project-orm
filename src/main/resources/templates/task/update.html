@@ -19,7 +19,8 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate th:action="@{/task/update/{id}(id=${task.id})}" method="post"
+                                    <form class="needs-validation" novalidate
+                                          th:action="@{/task/update/{id}(id=${task.getId()})}" method="post"
                                           th:object="${task}">
 
                                         <div class="row">
@@ -28,7 +29,7 @@
                                                     <label>Project</label>
                                                     <select th:field="*{project}" class="custom-select"
                                                             required="required">
-                                                        <option th:value=" ''" th:text="Select"></option>
+                                                        <!--                                                        <option th:value=" ''" th:text="Select"></option>-->
                                                         <option th:each="project : ${projects}"
                                                                 th:value="${project.projectCode}"
                                                                 th:text="${project.projectCode + '-' + project.projectName}"></option>
@@ -44,7 +45,7 @@
                                                     <label>Assigned Employee</label>
                                                     <select th:field="*{assignedEmployee}" class="custom-select"
                                                             required="required">
-                                                        <option th:value=" ''" th:text="Select"></option>
+                                                        <!--                                                        <option th:value=" ''" th:text="Select"></option>-->
                                                         <option th:each="employee : ${employees}"
                                                                 th:value="${employee.userName}"
                                                                 th:text="${employee.firstName + ' ' + employee.lastName}"></option>
@@ -124,7 +125,8 @@
                                                 <td th:text="${#temporals.format(task.assignedDate,'MM/dd/yyyy')}"></td>
                                                 <td th:text="${task.taskStatus}"></td>
                                                 <td>
-                                                    <a th:href="@{/task/update/{id}(id=${task.getId()})}" class="btn btn-warning rounded-0">Update</a>
+                                                    <a th:href="@{/task/update/{id}(id=${task.getId()})}"
+                                                       class="btn btn-warning rounded-0">Update</a>
                                                     <a th:href="@{/task/delete/{id}(id=${task.getId()})}"
                                                        class="btn btn-danger rounded-0">Delete</a>
                                                 </td>

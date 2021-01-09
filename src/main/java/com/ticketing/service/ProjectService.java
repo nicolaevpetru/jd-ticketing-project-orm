@@ -1,6 +1,7 @@
 package com.ticketing.service;
 
 import com.ticketing.dto.ProjectDTO;
+import com.ticketing.entity.Project;
 
 import java.util.List;
 
@@ -10,9 +11,11 @@ public interface ProjectService {
 
     List<ProjectDTO> listAllProjects();
 
-    void save(ProjectDTO dto);
+    Project save(ProjectDTO dto);
 
-    ProjectDTO update(ProjectDTO dto);
+    void update(ProjectDTO dto);
 
     void delete(String code);
+
+    void complete(String projectCode);
 }
