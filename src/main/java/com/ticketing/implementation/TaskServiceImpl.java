@@ -114,4 +114,12 @@ public class TaskServiceImpl implements TaskService {
         List<Task> list = taskRepository.findAllByTaskStatusIsNotAndAssignedEmployee(status, user);
         return list.stream().map(taskMapper::convertToDto).collect(Collectors.toList());
     }
+
+    @Override
+    public List<TaskDTO> listAllTaskByProjectManager() {
+
+        User user = userRepository.findByUserName("manager@manager.com");
+        List<Task> tasks = taskRepository.findAllByProjectAssignedManager(user);
+        return tasks.stream().map(taskMapper::convertToDto).collect(Collectors.toList());
+    }
 }
