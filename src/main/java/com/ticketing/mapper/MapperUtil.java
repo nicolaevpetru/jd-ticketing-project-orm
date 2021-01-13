@@ -14,13 +14,13 @@ public class MapperUtil {
         this.modelMapper = modelMapper;
     }
 
-//    public <T> T convertToEntity(Object objectToBeConverted, T convertedObject) {
-//        return modelMapper.map(objectToBeConverted, (Type) convertedObject.getClass());
-//    }
-//
-//    public <T> T convertToDTO(Object objectToBeConverted, T convertedObject) {
-//        return modelMapper.map(objectToBeConverted, (Type) convertedObject.getClass());
-//    }
+    public <T> T convertToEntity(Object objectToBeConverted, T convertedObject) {
+        return modelMapper.map(objectToBeConverted, (Type) convertedObject.getClass());
+    }
+
+    public <T> T convertToDTO(Object objectToBeConverted, T convertedObject) {
+        return modelMapper.map(objectToBeConverted, (Type) convertedObject.getClass());
+    }
 
     public <T> T convert(Object objectToBeConverted, T convertedObject) {
         return modelMapper.map(objectToBeConverted, (Type) convertedObject.getClass());
