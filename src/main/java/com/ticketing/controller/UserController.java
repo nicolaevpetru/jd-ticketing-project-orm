@@ -1,6 +1,7 @@
 package com.ticketing.controller;
 
 import com.ticketing.dto.UserDTO;
+import com.ticketing.exception.TicketingProjectException;
 import com.ticketing.service.RoleService;
 import com.ticketing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public class UserController {
     }
 
     @GetMapping("/delete/{username}")
-    public String deleteUser(@PathVariable("username") String username) {
+    public String deleteUser(@PathVariable("username") String username) throws TicketingProjectException {
         userService.delete(username);
         return "redirect:/user/create";
     }

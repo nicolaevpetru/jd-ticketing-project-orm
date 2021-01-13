@@ -2,6 +2,7 @@ package com.ticketing.service;
 
 import com.ticketing.dto.UserDTO;
 import com.ticketing.entity.User;
+import com.ticketing.exception.TicketingProjectException;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface UserService {
 
     UserDTO update(UserDTO dto);
 
-    void delete(String username);
+    void delete(String username) throws TicketingProjectException;
 
     void deleteByUserName(String username);
 
