@@ -3,6 +3,7 @@ package com.ticketing.service;
 import com.ticketing.dto.ProjectDTO;
 import com.ticketing.dto.TaskDTO;
 import com.ticketing.entity.Task;
+import com.ticketing.entity.User;
 import com.ticketing.enums.Status;
 
 import java.util.List;
@@ -34,4 +35,6 @@ public interface TaskService {
     void updateStatus(TaskDTO dto);
 
     List<TaskDTO> listAllTasksByStatus(Status status);
+
+    List<TaskDTO> readAllByEmployee(User user);
 }

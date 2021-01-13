@@ -2,6 +2,7 @@ package com.ticketing.service;
 
 import com.ticketing.dto.ProjectDTO;
 import com.ticketing.entity.Project;
+import com.ticketing.entity.User;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface ProjectService {
     void complete(String projectCode);
 
     List<ProjectDTO> listAllProjectDetails();
+
+    List<ProjectDTO> readAllByAssignedManager(User user);
 }
